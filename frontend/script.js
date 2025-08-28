@@ -1,7 +1,8 @@
 // ✅ Backend base URL (Render backend)
 const API_BASE = "https://imag-3e3b.onrender.com";
 
-(async function fetchImages() {
+// ✅ Define fetchImages as a reusable function
+async function fetchImages() {
   const container = document.getElementById("gallery");
   container.innerHTML = "Loading...";
 
@@ -40,7 +41,8 @@ const API_BASE = "https://imag-3e3b.onrender.com";
           body: JSON.stringify({ key: img.Key })
         });
         const dj = await dres.json();
-        if (dj.success) fetchImages(); else alert("Delete failed");
+        if (dj.success) fetchImages();
+        else alert("Delete failed");
       };
 
       card.appendChild(el);
@@ -52,9 +54,9 @@ const API_BASE = "https://imag-3e3b.onrender.com";
     console.error(err);
     container.innerHTML = "<p>Error loading images</p>";
   }
-})();
+}
 
-// Upload form
+// ✅ Upload form
 const form = document.getElementById("uploadForm");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -69,7 +71,7 @@ form.addEventListener("submit", async (e) => {
     if (j.success || j.key) {
       document.getElementById("uploadMsg").innerText = "Upload successful";
       form.reset();
-      fetchImages(); // reload images after upload
+      fetchImages(); // ✅ reload images after upload
     } else {
       document.getElementById("uploadMsg").innerText = "Upload failed";
     }
