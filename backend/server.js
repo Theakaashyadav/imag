@@ -16,7 +16,14 @@ const { PutObjectCommand } = require('@aws-sdk/client-s3');
 const { listImages, getPresignedUrl, deleteObject, s3 } = require('./s3');
 
 const app = express();
-app.use(cors());
+
+// ✅ Allow only your frontend domain
+app.use(cors({
+  origin: ["https://imag-r.onrender.com"],  // your frontend Render URL
+  methods: ["GET", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type"]
+}));
+
 app.use(express.json());
 
 // Multer memory storage
@@ -34,17 +41,13 @@ if (!BUCKET) {
 }
 
 // ✅ Upload endpoint
-// ✅ Upload endpoint
 app.post("/upload", upload.single("image"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // store in "images/" folder
-    // Upload directly to bucket root
-const key = `${Date.now()}-${uuidv4()}-${req.file.originalname}`;
-
+    const key = `${Date.now()}-${uuidv4()}-${req.file.originalname}`;
     console.log(`⬆️ Uploading file to bucket "${BUCKET}" with key "${key}"`);
 
     const params = {
@@ -64,20 +67,16 @@ const key = `${Date.now()}-${uuidv4()}-${req.file.originalname}`;
   }
 });
 
-
-// ✅ List images with presigned URLs
+// ✅ List images
 app.get('/images', async (req, res) => {
   try {
     const items = await listImages('');
- // will now match
     res.json(items.reverse());
   } catch (err) {
     console.error("❌ List error:", err);
     res.status(500).json({ error: 'Could not list images' });
   }
 });
-
-
 
 // ✅ Delete an image
 app.delete('/images', async (req, res) => {
