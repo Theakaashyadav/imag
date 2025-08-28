@@ -1,4 +1,7 @@
-async function fetchImages() {
+// ✅ Backend base URL (Render backend)
+const API_BASE = "https://imag-3e3b.onrender.com";
+
+(async function fetchImages() {
   const container = document.getElementById("gallery");
   container.innerHTML = "Loading...";
 
@@ -18,7 +21,7 @@ async function fetchImages() {
       card.className = "card";
 
       const el = document.createElement("img");
-      el.src = img.Url;   // ✅ match backend property (capital U)
+      el.src = img.Url;   // ✅ match backend property
       el.alt = img.Key;
       el.style.maxWidth = "200px";
       el.style.margin = "10px";
@@ -49,8 +52,7 @@ async function fetchImages() {
     console.error(err);
     container.innerHTML = "<p>Error loading images</p>";
   }
-}
-
+})();
 
 // Upload form
 const form = document.getElementById("uploadForm");
@@ -79,12 +81,3 @@ form.addEventListener("submit", async (e) => {
 
 // ✅ Auto load when page is ready
 window.addEventListener("DOMContentLoaded", () => fetchImages());
-
-
-
-
-
-
-
-
-
