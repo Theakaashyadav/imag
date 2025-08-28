@@ -81,15 +81,25 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-document.querySelectorAll(".card img").forEach(img => {
-  img.addEventListener("load", () => {
-    img.classList.add("loaded");
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll("#imagesList img");
+
+  images.forEach(img => {
+    if (img.complete) {
+      img.classList.add("loaded");
+    } else {
+      img.addEventListener("load", () => {
+        img.classList.add("loaded");
+      });
+    }
   });
 });
 
 
+
 // ✅ Auto load when page is ready
 window.addEventListener("DOMContentLoaded", () => fetchImages());
+
 
 
 
