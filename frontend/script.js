@@ -1,5 +1,5 @@
 // ✅ Backend base URL (Render backend)
-const API_BASE = "https://imag-3e3b.onrender.com";
+const API_BASE = "https://oneimages.onrender.com";
 
 // ✅ Define fetchImages as a reusable function
 async function fetchImages() {
@@ -83,3 +83,4 @@ form.addEventListener("submit", async (e) => {
 
 // ✅ Auto load when page is ready
 window.addEventListener("DOMContentLoaded", () => fetchImages());
+
