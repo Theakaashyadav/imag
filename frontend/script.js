@@ -84,3 +84,4 @@ form.addEventListener("submit", async (e) => {
 // ✅ Auto load when page is ready
 window.addEventListener("DOMContentLoaded", () => fetchImages());
 
+
