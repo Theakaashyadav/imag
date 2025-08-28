@@ -145,14 +145,14 @@ h1 {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 8px;
-  filter: blur(15px);        /* start blurred */
-  transition: filter 0.8s ease;
+
 }
 
 /* Remove blur once loaded */
 .card img.loaded {
   filter: blur(0);
 }
+
 
 
 
