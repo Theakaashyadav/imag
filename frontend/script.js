@@ -81,7 +81,15 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+document.querySelectorAll(".card img").forEach(img => {
+  img.addEventListener("load", () => {
+    img.classList.add("loaded");
+  });
+});
+
+
 // ✅ Auto load when page is ready
 window.addEventListener("DOMContentLoaded", () => fetchImages());
+
 
 
