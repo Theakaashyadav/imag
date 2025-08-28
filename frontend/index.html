@@ -27,18 +27,17 @@
     </main>
 
     <!-- Define API base first -->
-    <script>
-      const API_BASE = 'http://localhost:4000';
-    </script>
+  
 
     <!-- Load your main script -->
-    <script src="script.js"></script>
+    <script src="script.js">
 
     <!-- Call fetchImages only AFTER script.js has loaded -->
-    <script>
+    
       document.addEventListener("DOMContentLoaded", () => {
         fetchImages();
       });
     </script>
   </body>
 </html>
+
